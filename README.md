@@ -1,12 +1,32 @@
 # DealWithSHREC
 
-> 2018/07/31 Jiadai Sun sunjiadai@foxmail.com
+> 2018/07/31  Jiadai Sun  sunjiadai@foxmail.com
 
-The main purpose of this project is to generate a data set in HDF5 format for PointNet as input. 
+The main purpose of this project is to **generate a data set in HDF5 format** for PointNet as input. 
 
 The network part is implemented at [MaxChanger/Pointnet_Pointnet2_pytorch](https://github.com/MaxChanger/Pointnet_Pointnet2_pytorch)  ([Fork & Modify From Here](https://github.com/yanx27/Pointnet_Pointnet2_pytorch) )
 
 The directory structure looks messy. I will continue to improve it.
+
+- **Python  / C++ / PCL / Shell Script**
+
+|    Dimension Normalization     |  Contrast Query and Database   |    Sampling from Query    |
+| :----------------------------: | :----------------------------: | :-----------------------: |
+| ![](./img/normalization_1.png) | ![](./img/normalization_2.png) | ![](./img/pointcloud.png) |
+
+### Some steps
+
+- run `python copymodel.py` copy 3308 `shrec17_data_jan27/shapenet/models/***.obj` to `model_obj/***.obj`
+
+- run `obj2pcd.sh` , use `mesh_sampling_self` to render `model_obj/***.obj` to PointCloud,Generate a set number of point clouds  and save to `model_ply/***.pcd`, use `pcl_pcd2ply` transform `model_ply/***.pcd` to `model_ply/***.ply`
+
+- run `ply_normalize.sh` use `normalization` to normalize`model_ply/***.ply` including location_normalization and dimension_normalization , save the `model_ply/***.ply` after normalizing to `model_ply_normalize/***.ply`
+
+- run `python wrire_hdf5.py` , save `PointCloud and Label` to hdf5 file, prepare for the input of A
+- use some scripts to help me quickly process large amounts of data
+- model.txt(Part of train.csv) contain 3308 models from shapenet, named `wss.***`
+
+### Some Code
 
 - [x] `pointdeal_cpp/***.cpp`
 
@@ -47,21 +67,3 @@ The directory structure looks messy. I will continue to improve it.
    
 
 
-
-model.txt中存放了3308个来自shapenet的model,均以wss.***命名
-
-运行 python copymodel.py 将3308个`shrec17_data_jan27/shapenet/models/***.obj` 拷贝至 `model_obj/***.obj`
-
-运行obj2pcd.sh 调用mesh_sampling_self将`model_obj/***.obj`进行渲染, 生成制定数目的点云`model_ply/***.pcd`,调用pcl_pcd2ply将`model_ply/***.pcd`转化为`model_ply/***.ply`
-
-运行ply_normalize.sh 调用normalization程序将`model_ply/***.ply`进行location和dimension的normalization,将`model_ply/***.ply`正则化后的文件保存至`model_ply_normalize/***.ply`
-
-运行 python wrire_hdf5.py 将点云数据和label另存为hdf5文件,为PointNet做输入准备
-
-
-
-1. python copyply.py
-2. ./ply2pcd.sh
-3. ./ply_resampling.sh
-4. ./ply_normalize.sh
-5. python write_hdf5.py
