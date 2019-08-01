@@ -10,7 +10,7 @@ The directory structure looks messy. I will continue to improve it.
 
 - **Python  / C++ / PCL / Shell Script**
 
-|    Dimension Normalization     |  Contrast Query and Database   |    Sampling from Query    |
+|  Need Dimension Normalization  |  Contrast Query and Database   |    Sampling from Query    |
 | :----------------------------: | :----------------------------: | :-----------------------: |
 | ![](./img/normalization_1.png) | ![](./img/normalization_2.png) | ![](./img/pointcloud.png) |
 
@@ -32,7 +32,7 @@ The directory structure looks messy. I will continue to improve it.
 
   - normalization.cpp
 
-    Pose Normalization and Location Normalization
+    Dimension Normalization and Location Normalization, without Pose Normalization
 
   - resampling.cpp
 
@@ -63,6 +63,12 @@ The directory structure looks messy. I will continue to improve it.
   An example use blender to render some 2D image
 
 - [ ] `visualization.py`
+
+  Not use
+
+- [ ] shrec17 folder
+
+  Documents provided by the sponsors for evaluation
 
    
 
