@@ -26,3 +26,6 @@ target_link_libraries (viewManyRender ${PCL_LIBRARIES})
 
 add_executable (viewOne viewOne.cpp)
 target_link_libraries (viewOne ${PCL_LIBRARIES})
+
+add_executable (viewManyPly viewManyPly.cpp)
+target_link_libraries (viewManyPly ${PCL_LIBRARIES})
