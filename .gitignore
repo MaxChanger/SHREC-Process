@@ -1,0 +1,13 @@
+/model_ply/*
+/model_ply_normalize/*
+/objectnn20_data_hdf5/*
+/.vscode/*
+/bad_model_obj/*
+/model_obj/*
+/findPlane/build
+/findPlane/build/*
+/icp/build/*
+/pointdeal_cpp/build/*
+/snn_train_ply_normalize/*
+*.pcd
+*.ply
